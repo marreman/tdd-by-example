@@ -1,15 +1,23 @@
-class Money {
-  constructor(protected amount: number) {}
-}
-
-export class Franc extends Money {
-  times(multiplier: number) {
-    return new Franc(this.amount * multiplier)
+export class Money {
+  static dollar(amount: number) {
+    return new Money(amount, "USD")
   }
-}
 
-export class Dollar extends Money {
-  times(multiplier: number) {
-    return new Dollar(this.amount * multiplier)
+  static franc(amount: number) {
+    return new Money(amount, "CHF")
+  }
+
+  constructor(protected amount: number, protected _currency: string) {}
+
+  currency() {
+    return this._currency
+  }
+
+  equals(money: Money) {
+    return this._currency === money._currency && this.amount === money.amount
+  }
+
+  times(multiplier: number): Money {
+    return new Money(this.amount * multiplier, this._currency)
   }
 }
