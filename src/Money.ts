@@ -21,11 +21,11 @@ export class Money implements Expression {
     return this._currency === money._currency && this.amount === money.amount
   }
 
-  times(multiplier: number): Money {
+  times(multiplier: number): Expression {
     return new Money(this.amount * multiplier, this._currency)
   }
 
-  plus(addend: Money) {
+  plus(addend: Expression): Expression {
     return new Sum(this, addend)
   }
 

@@ -1,4 +1,5 @@
 import { Bank } from "./Bank"
+import { Expression } from "./Expression"
 import { Money } from "./Money"
 import { Sum } from "./Sum"
 
@@ -35,4 +36,13 @@ test("add rate", () => {
   bank.addRate("SEK", "USD", 10)
   const rate = bank.rate("SEK", "USD")
   expect(rate).toEqual(10)
+})
+
+test("mixed addition", () => {
+  const fiveBucks: Expression = Money.dollar(5)
+  const tenFrancs: Expression = Money.franc(10)
+  const bank = new Bank()
+  bank.addRate("CHF", "USD", 2)
+  const result = bank.reduce(fiveBucks.plus(tenFrancs), "USD")
+  expect(result).toEqual(Money.dollar(10))
 })

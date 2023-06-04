@@ -1,4 +1,5 @@
 import { Money } from "./Money"
+import { Sum } from "./Sum"
 
 test("dollar multiplication", () => {
   const five = Money.dollar(5)
@@ -26,6 +27,5 @@ test("currency", () => {
 test("plus returns sum", () => {
   const five = Money.dollar(5)
   const sum = five.plus(Money.dollar(5))
-  expect(sum.augend).toEqual(five)
-  expect(sum.addend).toEqual(five)
+  expect(sum).toEqual(new Sum(Money.dollar(5), Money.dollar(5)))
 })
