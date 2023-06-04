@@ -22,3 +22,8 @@ test("currency", () => {
   expect(Money.dollar(1).currency()).toBe("USD")
   expect(Money.franc(1).currency()).toBe("CHF")
 })
+
+test("simple addition", () => {
+  const sum = Money.dollar(5).plus(Money.dollar(5))
+  expect(sum).toEqual(Money.dollar(10))
+})
