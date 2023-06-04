@@ -11,7 +11,11 @@ export class Sum implements Expression {
     return new Money(amount, to)
   }
 
-  plus(_addend: Expression): Expression {
-    throw new Error("Not implemented")
+  plus(addend: Expression): Expression {
+    return new Sum(this, addend)
+  }
+
+  times(multiplier: number): Expression {
+    return new Sum(this.augend.times(multiplier), this.addend.times(multiplier))
   }
 }
