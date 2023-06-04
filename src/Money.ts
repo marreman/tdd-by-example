@@ -1,4 +1,4 @@
-export class Money {
+export class Money implements Expression {
   static dollar(amount: number) {
     return new Money(amount, "USD")
   }
